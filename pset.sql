@@ -9,10 +9,27 @@ DROP ROLE IF EXISTS gustavo_schade;
 -- Depois, criar o usuário "gustavo_schade".
 
 CREATE USER gustavo_schade
-WITH        CREATEDB
-CREATEROLE  ENCRYPTED
-PASSWORD    '      '
+  WITH       = CREATEDB
+  CREATEROLE = ENCRYPTED
+  PASSWORD   = 'psetuvv'
 
+-- Depois, criar o banco de dados.
+
+CREATE DATABASE uvv 
+  OWNER             = gustavo_schade
+  TEMPLATE          =  template0;
+  ENCODING          = 'UTF8'
+  LC_COLLATE        = 'pt_BR.UTF-8'
+  LC_CTYPE          = 'pt_BR.UTF-8'
+  ALLOW_CONNECTIONS =  true
+
+-- Depois, dar permissão de acesso ao banco de dados.
+
+\c uvv gustavo_schade;
+
+-- Criar o schema.
+
+CREATE SCHEMA lojas;
 
 -- Criar a tabela "produtos". 
 
@@ -26,7 +43,7 @@ CREATE TABLE lojas.produtos (
                 imagem_arquivo            VARCHAR(512),
                 imagem_charset            VARCHAR(512),
                 imagem_ultima_atualizacao DATE,
-                CONSTRAINT produto_id     
+                CONSTRAINT   produto_id     
                 PRIMARY KEY (produto_id)
 );
 COMMENT ON TABLE  lojas.produtos                           IS 'Criar a tabela "produtos".';
@@ -113,7 +130,7 @@ CREATE TABLE lojas.clientes (
                 telefone1  VARCHAR(20),
                 telefone2  VARCHAR(20),
                 telefone3  VARCHAR(20),
-                CONSTRAINT cliente_id 
+                CONSTRAINT   cliente_id 
                 PRIMARY KEY (cliente_id)
 );
 COMMENT ON TABLE  lojas.clientes            IS 'Criar a tabela "clientes".';
