@@ -25,7 +25,7 @@ CREATE DATABASE uvv
 
 -- Depois, dar permissão de acesso ao banco de dados.
 
-\c uvv gustavo_schade;
+\i uvv gustavo_schade;
 
 -- Criar o schema.
 
