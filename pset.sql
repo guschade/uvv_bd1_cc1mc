@@ -19,6 +19,7 @@ CREATE USER gustavo_schade
 ;
 
 SET ROLE gustavo_schade; 
+
 -- Depois, criar o banco de dados.
 
 CREATE DATABASE uvv 
