@@ -89,7 +89,7 @@ CREATE TABLE lojas (
                 CONSTRAINT   pk_lojas 
                 PRIMARY KEY (loja_id),
                 CONSTRAINT   check_endereco_web
-                CHECK       (IF endereco_web IS NOT NULL)
+                CHECK       (endereco_web IS NOT NULL)
 );
 
 -- Comentários da tabela e das colunas da tabela "lojas".
@@ -117,7 +117,7 @@ CREATE TABLE estoques (
                 CONSTRAINT   pk_estoques 
                 PRIMARY KEY (estoque_id),
                 CONSTRAINT   check_quantidade
-                CHECK       (IF quantidade >=0)
+                CHECK       (quantidade >=0)
 );
 
 -- Comentários da tabela e das colunas da tabela "estoques".
@@ -158,7 +158,7 @@ CREATE TABLE clientes (
                 CONSTRAINT   pk_clientes 
                 PRIMARY KEY (cliente_id),
                 CONSTRAINT   check_telefone1
-                CHECK       (IF telefone1 IS NOT NULL)
+                CHECK       (telefone1 IS NOT NULL)
 );
 
 -- Comentários da tabela e das colunas da tabela "clientes".
