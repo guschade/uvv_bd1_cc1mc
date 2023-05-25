@@ -45,9 +45,11 @@ CREATE TABLE lojas.produtos (
   imagem_ultima_atualizacao DATE,
   CONSTRAINT   produto_id 
   PRIMARY KEY (produto_id),
-  CONSTRAINT check_preco_unitario 
-  CHECK (preco_unitario >= 0)
+  CONSTRAINT   check_preco_unitario 
+  CHECK       (preco_unitario >= 0)
 );
+
+-- Comentários da tabela e das colunas da tabela "produtos".
 
 COMMENT ON TABLE  lojas.produtos                           IS 'Criar a tabela "produtos".';
 COMMENT ON COLUMN lojas.produtos.produto_id                IS 'Criar a coluna "produto_id", na qual ela é a Primary Key.';
@@ -76,7 +78,12 @@ CREATE TABLE lojas.lojas (
   logo_ultima_atualizacao DATE,
   CONSTRAINT   loja_id     
   PRIMARY KEY (loja_id)
+  CONSTRAINT   check_endereco_web
+  CHECK       (IF endereco_web IS NOT NULL)
 );
+
+-- Comentários da tabela e das colunas da tabela "lojas".
+
 COMMENT ON TABLE  lojas.lojas                         IS 'Criar a tabela "lojas".';
 COMMENT ON COLUMN lojas.lojas.loja_id                 IS 'Criar a coluna "loja_id", na qual ela é a Primary Key.';
 COMMENT ON COLUMN lojas.lojas.nome                    IS 'Criar a coluna "nome".';
@@ -99,7 +106,12 @@ CREATE TABLE lojas.estoques (
   quantidade NUMERIC(38) NOT NULL,
   CONSTRAINT   estoque_id  
   PRIMARY KEY (estoque_id)
+  CONSTRAINT   check_quantidade
+  CHECK       (quantidade >=0)
 );
+
+-- Comentários da tabela e das colunas da tabela "estoques".
+
 COMMENT ON TABLE  lojas.estoques            IS 'Criar a tabela "estoques".';
 COMMENT ON COLUMN lojas.estoques.estoque_id IS 'Criar a coluna "estoque_id", na qual ela é a Primary Key.';
 COMMENT ON COLUMN lojas.estoques.loja_id    IS 'Criar a coluna "loja_id", na qual é uma FK.';
@@ -135,7 +147,12 @@ CREATE TABLE lojas.clientes (
   telefone3  VARCHAR(20),
   CONSTRAINT   cliente_id 
   PRIMARY KEY (cliente_id)
+  CONSTRAINT   check_telefone1
+  CHECK       (IF telefone1 IS NOT NULL)
 );
+
+-- Comentários da tabela e das colunas da tabela "clientes".
+
 COMMENT ON TABLE  lojas.clientes            IS 'Criar a tabela "clientes".';
 COMMENT ON COLUMN lojas.clientes.cliente_id IS 'Criar a coluna "cliente_id", na qual ela é a Primary Key.';
 COMMENT ON COLUMN lojas.clientes.email      IS 'Criar a coluna "email".';
@@ -154,9 +171,11 @@ CREATE TABLE lojas.envios (
   status           VARCHAR(15)  NOT NULL,
   CONSTRAINT   envio_id 
   PRIMARY KEY (envio_id),
-  CONSTRAINT check_status 
-  CHECK (status IN ('CRIADO', 'ENVIADO', 'TRANSITO', 'ENTREGUE'))
+  CONSTRAINT   check_status 
+  CHECK       (status IN ('CRIADO', 'ENVIADO', 'TRANSITO', 'ENTREGUE'))
 );
+
+-- Comentários da tabela e das colunas da tabela "envios".
 
 COMMENT ON TABLE  lojas.envios                  IS 'Criar a tabela "envios".';
 COMMENT ON COLUMN lojas.envios.envio_id         IS 'Criar a coluna "envio_id", na qual é a Primary Key.';
@@ -193,9 +212,11 @@ CREATE TABLE lojas.pedidos (
   loja_id    NUMERIC(38) NOT NULL,
   CONSTRAINT   pedido_id 
   PRIMARY KEY (pedido_id),
-  CONSTRAINT check_status 
-  CHECK (status IN ('CANCELADO', 'COMPLETO', 'ABERTO', 'PAGO', 'REEMBOLSADO', 'ENVIADO'))
+  CONSTRAINT   check_status 
+  CHECK       (status IN ('CANCELADO', 'COMPLETO', 'ABERTO', 'PAGO', 'REEMBOLSADO', 'ENVIADO'))
 );
+
+-- Comentários da tabela e das colunas da tabela "pedidos".
 
 COMMENT ON TABLE  lojas.pedidos            IS 'Criar a tabela "pedidos".';
 COMMENT ON COLUMN lojas.pedidos.pedido_id  IS 'Criar a coluna "pedido_id", na qual ela é a Primary Key.';
@@ -233,7 +254,12 @@ CREATE TABLE lojas.pedidos_itens (
   envio_id        NUMERIC(38),
   CONSTRAINT   pedido_id 
   PRIMARY KEY (pedido_id, produto_id)
+  CONSTRAINT   check_quantidade
+  CHECK       (quantidade >=0) 
 );
+
+-- Comentários da tabela e das colunas da tabela "pedidos_itens".
+
 COMMENT ON TABLE  lojas.pedidos_itens                 IS 'Criar a tabela "pedidos_itens".';
 COMMENT ON COLUMN lojas.pedidos_itens.pedido_id       IS 'Criar a coluna "pedido_id", na qual ela é uma PFK.';
 COMMENT ON COLUMN lojas.pedidos_itens.produto_id      IS 'Criar a coluna "produto_id", na qual ela é uma PFK.';
