@@ -9,20 +9,20 @@ DROP ROLE IF EXISTS gustavo_schade;
 -- Depois, criar o usuário "gustavo_schade".
 
 CREATE USER gustavo_schade
-  WITH       = CREATEDB
-  CREATEROLE = ENCRYPTED
-  PASSWORD   = 'psetuvv'
-
+  WITH        CREATEDB,
+  CREATEROLE  ENCRYPTED,
+  PASSWORD   'psetuvv';
+  
 -- Depois, criar o banco de dados.
 
 CREATE DATABASE uvv 
-  OWNER             =  gustavo_schade
-  TEMPLATE          =  template0;
-  ENCODING          = 'UTF8'
-  LC_COLLATE        = 'pt_BR.UTF-8'
-  LC_CTYPE          = 'pt_BR.UTF-8'
-  ALLOW_CONNECTIONS =  true
-
+  OWNER             =  gustavo_schade,
+  TEMPLATE          =  template0,
+  ENCODING          = 'UTF8',
+  LC_COLLATE        = 'pt_BR.UTF-8',
+  LC_CTYPE          = 'pt_BR.UTF-8',
+  ALLOW_CONNECTIONS =  TRUE;
+  
 -- Depois, dar permissão de acesso ao banco de dados.
 
 \c uvv gustavo_schade;
