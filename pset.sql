@@ -12,28 +12,26 @@ DROP USER IF EXISTS gustavo_schade;
 
 -- Depois, criar o usuário "gustavo_schade".
 
-CREATE USER gustavo_schade
-  WITH        CREATEDB
-  CREATEROLE  ENCRYPTED
-  PASSWORD   'psetuvv'
-;
-
-SET ROLE gustavo_schade; 
-
+CREATE USER gustavo_schade WITH        
+  CREATEDB
+  CREATEROLE  
+  ENCRYPTED PASSWORD 'psetuvv';
+ 
 -- Depois, criar o banco de dados.
 
+SET ROLE gustavo_schade;
 CREATE DATABASE uvv 
   OWNER             =  gustavo_schade
   TEMPLATE          =  template0
   ENCODING          = 'UTF8'
   LC_COLLATE        = 'pt_BR.UTF-8'
   LC_CTYPE          = 'pt_BR.UTF-8'
-  ALLOW_CONNECTIONS =  TRUE
-  ;
+  ALLOW_CONNECTIONS =  TRUE;
 
 ALTER DATABASE uvv OWNER TO gustavo_schade;  	
+
 -- Depois, dar permissão de acesso ao banco de dados.
-\setenv PASSWORD psetuvv
+\setenv PGPASSWORD 'psetuvv'
 
 \c uvv gustavo_schade
 
